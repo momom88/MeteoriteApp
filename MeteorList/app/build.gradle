@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'androidx.navigation.safeargs'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.martin.meteorlist"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+
+    //dagger2
+    kapt "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
+    kapt "com.google.dagger:dagger-android-processor:${rootProject.ext.dagger2Version}"
+    implementation "com.google.dagger:dagger-android:${rootProject.ext.dagger2Version}"
+    implementation "com.google.dagger:dagger-android-support:${rootProject.ext.dagger2Version}"
+    implementation "com.google.dagger:dagger:${rootProject.ext.dagger2Version}"
+
+    // Assisted Inject
+    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:0.3.2"
+    kapt "com.squareup.inject:assisted-inject-processor-dagger2:0.3.2"
+
+    //Worker
+    implementation "android.arch.work:work-runtime-ktx:1.0.0-beta01"
+    implementation "android.arch.work:work-rxjava2:1.0.0-beta01"
+
+    //Room
+    implementation "androidx.room:room-runtime:${rootProject.ext.room_version}"
+    implementation "androidx.room:room-rxjava2:${rootProject.ext.room_version}"
+    kapt "androidx.room:room-compiler:${rootProject.ext.room_version}"
+
+    //Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.rxJavaAdapterVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.rxJavaAdapterVersion}"
+
+    //RxJava RxAndroid rxKotlin
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxReactiveX}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxReactiveX}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rootProject.rxReactiveX}"
+
+    //Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:${rootProject.ext.nav_version}"
+    implementation "android.arch.navigation:navigation-ui-ktx:${rootProject.ext.nav_version}"
+
+    //CardView
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
+
+    //test
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
+    testImplementation 'org.mockito:mockito-inline:2.11.0'
+}

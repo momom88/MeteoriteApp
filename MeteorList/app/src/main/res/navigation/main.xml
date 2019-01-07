@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main"
+            app:startDestination="@id/meteorListFragment">
+
+    <fragment android:id="@+id/meteorListFragment"
+              android:name="com.example.martin.meteorlist.ui.meteoritelistfragment.MeteoriteListFragment"
+              android:label="Meteorite App"
+              tools:layout="@layout/fragment_meteorite_list">
+        <action android:id="@+id/action_meteorListFragment_to_mapsDetailFragment"
+                app:destination="@id/mapsDetailFragment"/>
+    </fragment>
+    <fragment android:id="@+id/mapsDetailFragment"
+              android:name="com.example.martin.meteorlist.ui.mapsdetailfragment.MapsDetailFragment"
+              android:label="Meteorite App" tools:layout="@layout/fragment_maps_detail">
+        <action android:id="@+id/action_mapsDetailFragment_to_meteorListFragment"
+                app:destination="@id/meteorListFragment"/>
+    </fragment>
+    <fragment android:id="@+id/aboutFragment"
+              android:name="com.example.martin.meteorlist.ui.aboutfragment.AboutFragment"
+              android:label="AboutFragment">
+        <action android:id="@+id/action_aboutFragment2_to_meteorListFragment" app:destination="@id/meteorListFragment"/>
+    </fragment>
+</navigation>

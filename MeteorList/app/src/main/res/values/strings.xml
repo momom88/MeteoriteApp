@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Meteorite App</string>
+    <string name="about">About</string>
+    <string name="name">Name:</string>
+    <string name="mass">Mass:</string>
+    <string name="movie_error_message">There is an error getting the data: \n</string>
+    <string name="title_activity_maps_detail_fragment">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="number">The number of meteorites fallen: %1$d</string>
+    <string name="meteorite">Meteorite</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_text">This comprehensive data set from The Meteoritical Society contains information on all of
+        the known meteorite landings. The Fusion Table is collected by Javier de
+        la Torre and we\'ve also provided an XLS file that consists of 34,513 meteorites and includes the following fields.
+
+        Meteorites are displayed only from 2011 until today.</string>
+</resources>
