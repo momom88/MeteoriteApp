@@ -55,10 +55,13 @@ class MeteoriteListFragment : Fragment(), MeteoriteInterface, Injectable {
         super.onActivityCreated(savedInstanceState)
         meteoriteListViewModel =
                 ViewModelProviders.of(this, viewModelFactory).get(MeteoriteListViewModel::class.java)
+        meteoriteListViewModel.connectToApi()
         meteoriteListViewModel.scheduleApiWorker()
+        mAdapter = MeteoriteListAdapter(this)
         mBinding.recyclerView.layoutManager = LinearLayoutManager(context)
+        mBinding.recyclerView.adapter = mAdapter
         meteoriteFromDatabase()
-        setupViewModel()
+        meteoriteApiError()
     }
 
     private fun meteoriteFromDatabase() {
@@ -66,30 +69,21 @@ class MeteoriteListFragment : Fragment(), MeteoriteInterface, Injectable {
             if (!it.isEmpty()) {
                 mBinding.loadingIndicator.visibility = GONE
                 mBinding.recyclerView.visibility = VISIBLE
-                mAdapter = MeteoriteListAdapter(this, it)
+                mAdapter.setMeteoriteList(it)
                 mBinding.cvNumberCount.visibility = VISIBLE
                 mBinding.tvNumberCount.text = resources.getString(R.string.number, it.lastIndex + 1)
-                mBinding.recyclerView.adapter = mAdapter
             }
         })
     }
 
-    private fun setupViewModel() {
-        compositeDisposable.add(
-            meteoriteListViewModel.getMeteorites()
-                .subscribeBy(
-                    onSuccess = {
-                        Log.i("ApiWorker", "setupViewModel On Success")
-                    },
-                    onError = {
-                        mBinding.loadingIndicator.visibility = GONE
-                        Toast.makeText(
-                            context, resources.getString(R.string.movie_error_message) + it,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                )
-        )
+    private fun meteoriteApiError(){
+        meteoriteListViewModel.meteoriteError().observe(this, Observer<String>{
+            mBinding.loadingIndicator.visibility = GONE
+            Toast.makeText(
+                context, resources.getString(R.string.movie_error_message) + it,
+                Toast.LENGTH_SHORT
+            ).show()
+        })
     }
 
     override fun onDestroyView() {
