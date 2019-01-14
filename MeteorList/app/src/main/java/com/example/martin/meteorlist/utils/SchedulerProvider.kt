@@ -1,7 +1,6 @@
 package com.example.martin.meteorlist.utils
 
 import io.reactivex.*
-import java.util.concurrent.TimeUnit
 
 class SchedulerProvider(val backgroundScheduler: Scheduler, val foregroundScheduler: Scheduler) {
 

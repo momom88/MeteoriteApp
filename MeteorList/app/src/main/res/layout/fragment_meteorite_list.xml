@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable name="numberMeteoritesFall" type="int"/>
+    </data>
+
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -8,7 +14,7 @@
             android:layout_height="match_parent">
         <androidx.cardview.widget.CardView
                 android:id="@+id/cv_number_count"
-                android:visibility="gone"
+                android:visibility="@{numberMeteoritesFall > 0 ? View.VISIBLE : View.GONE}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -20,7 +26,7 @@
                     android:id="@+id/tv_number_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/number"
+                    android:text="@{@string/number(numberMeteoritesFall)}"
                     android:textSize="20sp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
@@ -28,7 +34,7 @@
         </androidx.cardview.widget.CardView>
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
-                android:visibility="gone"
+                android:visibility="@{numberMeteoritesFall > 0 ? View.VISIBLE : View.GONE}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         <FrameLayout
@@ -38,7 +44,7 @@
             <ProgressBar
                     android:id="@+id/loading_indicator"
                     android:layout_gravity="center"
-                    android:visibility="visible"
+                    android:visibility="@{numberMeteoritesFall > 0 ? View.GONE : View.VISIBLE}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
         </FrameLayout>
